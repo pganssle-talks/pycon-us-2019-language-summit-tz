@@ -16,6 +16,7 @@ help:
 	@echo 'Usage:'
 	@echo 'make init            Initialize directory'
 	@echo 'make html            Generate the web site'
+	@echo 'make serve           Start a local server'
 	@echo 'make clean           Clean up generated site'
 
 .PHONY: init
