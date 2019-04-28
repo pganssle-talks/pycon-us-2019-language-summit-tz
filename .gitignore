@@ -6,6 +6,7 @@ docs
 .vendor/
 .bundle/
 Gemfile.lock
+Gemfile
 
 # Python stuff
 __pycache__
