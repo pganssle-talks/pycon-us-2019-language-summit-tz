@@ -4,7 +4,8 @@
 - Shipped with many operating systems
 - Source for `dateutil` and `pytz`'s data.
 - 2-21 releases per year (average 9)
-
+<br/>
+<img src="images/all_zones.png" alt="Map of IANA time zones"/>
 
 Notes:
 
@@ -18,13 +19,13 @@ This is an open source project that maintains historical time zone information. 
 
 ## System
 
-Pros:
+**Pros:**
 
 - Use normal operating system update mechanisms
 - Update cadence is independent of CPython's updates
 - Uses the same data as other applications
 
-Cons:
+**Cons:**
 
 - Not guaranteed to exist (not officially supported on Windows *yet*)
 - Less control for programmers
@@ -36,12 +37,12 @@ Cons:
 
 ## PyPI package
 
-Pros:
+**Pros:**
 
 - Guaranteed on all platforms
 - Update cadence is mostly independent of CPython
 
-Cons:
+**Cons:**
 
 - Requires either a dependency or a mechanism for regular updates
 - Python-specific time zone data not managed by the system
@@ -72,10 +73,17 @@ Cons:
 
 ## Possible solutions
 
+<table>
+<tr>
+<td>
+
 - **Heuristics**
     - Works with all current time zones
     - `pytz` and `dateutil` use this strategy
     - Not guaranteed to work for future zones
+
+</td>
+<td>
 
 - **Custom compiler for tzdata**
     - Guaranteed to fix this problem
@@ -83,6 +91,9 @@ Cons:
     - Rules out using system time zone database
     - Requires ongoing maintenance
 
+</td>
+</tr>
+</table>
 </div>
 
 Notes:
@@ -98,6 +109,8 @@ Another problem with the custom compiler is that this would require ongoing main
 --
 
 # Proposal
+
+<br/>
 
 1. **Support `tzfile`**: On balance, heuristics should be "good enough"
 2. **Use system data with fallback to PyPI package**
@@ -118,6 +131,9 @@ class zoneinfo:
     def fromfile(self, tzfile, tzkey):
         ...
 ```
+
+<br/>
+<br/>
 
 **Should use a PEP**: Many design decisions that need to be documented.
 
