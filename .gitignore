@@ -2,6 +2,9 @@ _site
 docs/
 docs
 
+# Node stuff
+reveal.js/node_modules
+
 # Bundle stuff
 .vendor/
 .bundle/
