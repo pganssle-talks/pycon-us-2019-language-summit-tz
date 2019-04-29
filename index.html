@@ -44,11 +44,12 @@
 				
 				<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-notes="^Note:">
 					<script type="text/template">
-<h1 style="font-size: 3em">Time Zones in the Standard Library</h1>
+<h1 style="font-size: 3em; text-align: center">Time Zones in the Standard Library</h1>
+<div style="text-align: center">
 <br/>
 <br/>
 <br/>
-<span style="font-size: 2.5em">
+<span style="font-size: 2.5em; text-align: center">
 Paul Ganssle
 </span>
 <br/>
@@ -61,7 +62,7 @@ Paul Ganssle
      href="http://creativecommons.org/publicdomain/zero/1.0/">
     <img src="external-images/logos/cc-zero.svg" style="border-style: none; height: 45px" alt="CC0" />
 </a>
-
+</div>
 <br/>
 
 Notes:
@@ -71,16 +72,18 @@ Notes:
 				
 				<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$" data-notes="^Note:">
 					<script type="text/template">
-# Time Zone Basics
-
-## Time Zones are Rules
+# Time zones are Rules
 
 - `UTC+1` is an offset
 - `Europe/London` is a time zone
 
+<br/>
+<br/>
+<br/>
+
 <div class="fragment">
 
-## Time zones in Python
+# Time zones in Python
 `tzinfo` objects represent a mapping between naive times and offset information:
 
 
@@ -114,10 +117,12 @@ times to the offset information that applies at the time.
 					<script type="text/template">
 # Concrete Time Zones
 
-- UTC / Fixed Offsets <span class="fragment" data-fragment-index="1">✔ Added in 3.2</span>
-- Local time <span class="fragment" data-fragment-index="2">✘</span>
-- IANA Time Zones <span class="fragment" data-fragment-index="2">✘</span>
+- UTC / Fixed Offsets <span class="fragment" style="color: green" data-fragment-index="1">✔ Added in 3.2</span>
+- Local time <span class="fragment" style="color: red" data-fragment-index="2">✘</span>
+- IANA Time Zones <span class="fragment" style="color: red" data-fragment-index="2">✘</span>
 
+<img src="images/whatsnew3.2.png" alt="What's new in Python 3.2 excerpt"
+     class="fragment" data-fragment-index="1" />
 
 Notes:
 
@@ -146,9 +151,9 @@ The UTC case in particular is both very commonly useful and easy to implement, a
 <br/>
 
 <ul>
-    <li> <b>PEP 431</b>: "Time zone support improvements" – ✘ Withdrawn for lack of DST support</li>
+    <li> <b>PEP 431</b>: "Time zone support improvements" – <span style="color: red">✘</span> Withdrawn for lack of DST support</li>
 <!--    <li class="fragment"><b>PEP 500</b>: "A protocol for delegating datetime methods to their tzinfo implementations" – ✘ Rejected</li> -->
-    <li class="fragment" data-fragment-index="1"><b>PEP 495</b>: "Local time disambiguation" – ✔ Accepted for Python 3.6</li>
+    <li class="fragment" data-fragment-index="1"><b>PEP 495</b>: "Local time disambiguation" – <span style="color: green">✔</span> Accepted for Python 3.6</li>
 </ul>
 
 <div class="fragment" data-fragment-index="1">
@@ -186,7 +191,8 @@ Having no solution to this led to the withdrawal of PEP 431. This problem was, h
 - Shipped with many operating systems
 - Source for `dateutil` and `pytz`'s data.
 - 2-21 releases per year (average 9)
-
+<br/>
+<img src="images/all_zones.png" alt="Map of IANA time zones"/>
 
 Notes:
 
@@ -200,13 +206,13 @@ This is an open source project that maintains historical time zone information. 
 
 ## System
 
-Pros:
+**Pros:**
 
 - Use normal operating system update mechanisms
 - Update cadence is independent of CPython's updates
 - Uses the same data as other applications
 
-Cons:
+**Cons:**
 
 - Not guaranteed to exist (not officially supported on Windows *yet*)
 - Less control for programmers
@@ -218,12 +224,12 @@ Cons:
 
 ## PyPI package
 
-Pros:
+**Pros:**
 
 - Guaranteed on all platforms
 - Update cadence is mostly independent of CPython
 
-Cons:
+**Cons:**
 
 - Requires either a dependency or a mechanism for regular updates
 - Python-specific time zone data not managed by the system
@@ -254,10 +260,17 @@ Cons:
 
 ## Possible solutions
 
+<table>
+<tr>
+<td>
+
 - **Heuristics**
     - Works with all current time zones
     - `pytz` and `dateutil` use this strategy
     - Not guaranteed to work for future zones
+
+</td>
+<td>
 
 - **Custom compiler for tzdata**
     - Guaranteed to fix this problem
@@ -265,6 +278,9 @@ Cons:
     - Rules out using system time zone database
     - Requires ongoing maintenance
 
+</td>
+</tr>
+</table>
 </div>
 
 Notes:
@@ -280,6 +296,8 @@ Another problem with the custom compiler is that this would require ongoing main
 --
 
 # Proposal
+
+<br/>
 
 1. **Support `tzfile`**: On balance, heuristics should be "good enough"
 2. **Use system data with fallback to PyPI package**
@@ -301,6 +319,9 @@ class zoneinfo:
         ...
 ```
 
+<br/>
+<br/>
+
 **Should use a PEP**: Many design decisions that need to be documented.
 
 					</script>
@@ -319,6 +340,8 @@ Some operations treat naive timezones as local times:
 2020-01-01 17:00:00+00:00
 ```
 
+<br/>
+
 But others do not:
 
 ```python
@@ -327,6 +350,8 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: can't subtract offset-naive and offset-aware datetimes
 ```
+
+<br/>
 
 And the offset and `tzname` information are not accessible:
 
@@ -339,18 +364,22 @@ None
 ''
 ```
 
+<br/>
+
 --
 
 # Local zone from `time`
 
 `dateutil` provides `tzlocal` that is a wrapper around the `time` module:
 
-```python
->>> from dateutil import tz
+```python >>> from dateutil import tz
 >>> dt = datetime(2020, 1, 1, tzinfo=tz.tzlocal())
 >>> dt.strftime("%Z%z")
 'EST-0500'
 ```
+
+<br/>
+<br/>
 
 Uses:
 
@@ -373,11 +402,17 @@ Uses:
 'PST-0800'
 ```
 
+<br/>
+
 2. Doesn't work at *all* on Windows (no `tzset`)
+
+<br/>
+<br/>
 
 3. Makes a *single* "local time" object implausible without mutating existing datetimes
 
-<div class="fragment">
+<br/>
+<br/>
 
 4. Mutates existing datetimes *anyway*:
 
@@ -391,8 +426,6 @@ Uses:
 'EST-0500'
 ```
 
-</div>
-
 --
 
 # Possible Options
@@ -403,7 +436,7 @@ Uses:
 
 3. Allow datetime offsets to change
 
-**Suggestion**: Needs one or more PEPs.
+**Suggestion**: Needs one or more PEPs
 
 					</script>
 				</section>

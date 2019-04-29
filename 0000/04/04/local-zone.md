@@ -9,6 +9,8 @@ Some operations treat naive timezones as local times:
 2020-01-01 17:00:00+00:00
 ```
 
+<br/>
+
 But others do not:
 
 ```python
@@ -17,6 +19,8 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: can't subtract offset-naive and offset-aware datetimes
 ```
+
+<br/>
 
 And the offset and `tzname` information are not accessible:
 
@@ -29,18 +33,22 @@ None
 ''
 ```
 
+<br/>
+
 --
 
 # Local zone from `time`
 
 `dateutil` provides `tzlocal` that is a wrapper around the `time` module:
 
-```python
->>> from dateutil import tz
+```python >>> from dateutil import tz
 >>> dt = datetime(2020, 1, 1, tzinfo=tz.tzlocal())
 >>> dt.strftime("%Z%z")
 'EST-0500'
 ```
+
+<br/>
+<br/>
 
 Uses:
 
@@ -63,11 +71,17 @@ Uses:
 'PST-0800'
 ```
 
+<br/>
+
 2. Doesn't work at *all* on Windows (no `tzset`)
+
+<br/>
+<br/>
 
 3. Makes a *single* "local time" object implausible without mutating existing datetimes
 
-<div class="fragment">
+<br/>
+<br/>
 
 4. Mutates existing datetimes *anyway*:
 
@@ -81,8 +95,6 @@ Uses:
 'EST-0500'
 ```
 
-</div>
-
 --
 
 # Possible Options
@@ -93,5 +105,5 @@ Uses:
 
 3. Allow datetime offsets to change
 
-**Suggestion**: Needs one or more PEPs.
+**Suggestion**: Needs one or more PEPs
 

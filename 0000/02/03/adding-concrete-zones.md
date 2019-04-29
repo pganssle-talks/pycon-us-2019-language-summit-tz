@@ -1,9 +1,11 @@
 # Concrete Time Zones
 
-- UTC / Fixed Offsets <span class="fragment" data-fragment-index="1">✔ Added in 3.2</span>
-- Local time <span class="fragment" data-fragment-index="2">✘</span>
-- IANA Time Zones <span class="fragment" data-fragment-index="2">✘</span>
+- UTC / Fixed Offsets <span class="fragment" style="color: green" data-fragment-index="1">✔ Added in 3.2</span>
+- Local time <span class="fragment" style="color: red" data-fragment-index="2">✘</span>
+- IANA Time Zones <span class="fragment" style="color: red" data-fragment-index="2">✘</span>
 
+<img src="images/whatsnew3.2.png" alt="What's new in Python 3.2 excerpt"
+     class="fragment" data-fragment-index="1" />
 
 Notes:
 
@@ -32,9 +34,9 @@ The UTC case in particular is both very commonly useful and easy to implement, a
 <br/>
 
 <ul>
-    <li> <b>PEP 431</b>: "Time zone support improvements" – ✘ Withdrawn for lack of DST support</li>
+    <li> <b>PEP 431</b>: "Time zone support improvements" – <span style="color: red">✘</span> Withdrawn for lack of DST support</li>
 <!--    <li class="fragment"><b>PEP 500</b>: "A protocol for delegating datetime methods to their tzinfo implementations" – ✘ Rejected</li> -->
-    <li class="fragment" data-fragment-index="1"><b>PEP 495</b>: "Local time disambiguation" – ✔ Accepted for Python 3.6</li>
+    <li class="fragment" data-fragment-index="1"><b>PEP 495</b>: "Local time disambiguation" – <span style="color: green">✔</span> Accepted for Python 3.6</li>
 </ul>
 
 <div class="fragment" data-fragment-index="1">

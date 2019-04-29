@@ -1,13 +1,15 @@
-# Time Zone Basics
-
-## Time Zones are Rules
+# Time zones are Rules
 
 - `UTC+1` is an offset
 - `Europe/London` is a time zone
 
+<br/>
+<br/>
+<br/>
+
 <div class="fragment">
 
-## Time zones in Python
+# Time zones in Python
 `tzinfo` objects represent a mapping between naive times and offset information:
 
 
