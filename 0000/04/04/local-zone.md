@@ -78,21 +78,17 @@ Uses:
 <br/>
 <br/>
 
-3. Makes a *single* "local time" object implausible without mutating existing datetimes
-
-<br/>
-<br/>
-
-4. Mutates existing datetimes *anyway*:
+3. Changing system time will change offsets for *existing* times:
 
 ```python
->>> dt = datetime(2019, 3, 15, tzinfo=tz.tzlocal())
+>>> from datetime import timezone
+>>> dt = datetime(2019, 3, 15, tzinfo=timezone.local)
 >>> dt.strftime("%Z%z")
 'EDT-0400'
 >>> os.environ["TZ"] = "UTC"
 >>> time.tzset()
 >>> dt.strftime("%Z%z")
-'EST-0500'
+'UTC+0000'
 ```
 
 --

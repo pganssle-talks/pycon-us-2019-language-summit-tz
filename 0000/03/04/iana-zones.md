@@ -22,13 +22,11 @@ This is an open source project that maintains historical time zone information. 
 **Pros:**
 
 - Use normal operating system update mechanisms
-- Update cadence is independent of CPython's updates
 - Uses the same data as other applications
 
 **Cons:**
 
 - Not guaranteed to exist (not officially supported on Windows *yet*)
-- Less control for programmers
 
 <br/>
 <br/>
@@ -40,11 +38,10 @@ This is an open source project that maintains historical time zone information. 
 **Pros:**
 
 - Guaranteed on all platforms
-- Update cadence is mostly independent of CPython
 
 **Cons:**
 
-- Requires either a dependency or a mechanism for regular updates
+- Requires a mechanism for regular updates
 - Python-specific time zone data not managed by the system
 
 </div>
@@ -87,7 +84,6 @@ This is an open source project that maintains historical time zone information. 
 
 - **Custom compiler for tzdata**
     - Guaranteed to fix this problem
-    - May be more memory-efficient
     - Rules out using system time zone database
     - Requires ongoing maintenance
 
