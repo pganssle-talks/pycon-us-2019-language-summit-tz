@@ -7,8 +7,6 @@
 <br/>
 <br/>
 
-<div class="fragment">
-
 # Time zones in Python
 `tzinfo` objects represent a mapping between naive times and offset information:
 
@@ -23,8 +21,6 @@
 >>> print(datetime(2019, 4, 1, 12, tzinfo=EASTERN))
 2019-04-01 12:00:00-04:00
 ```
-
-</div>
 
 Notes:
 
